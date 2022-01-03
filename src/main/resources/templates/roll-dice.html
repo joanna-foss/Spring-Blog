@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Rollin'</title>
+</head>
+<body>
+<h1>Die Roll</h1>
+
+<p>Choose a number between 1 and 6. Then do a die roll to see if your number matches the die roll!</p>
+<form action="/roll-dice/results" method="post">
+	
+	<select name="n" id="n">
+		<option value="none" selected disabled hidden>Select a number:</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+	</select>
+	
+	<button type="submit">Roll</button>
+</form>
+
+<h3>You chose number <span th:text="${n}"></span>.</h3>
+<h3>You rolled a <span th:text="${random}"></span>.</h3>
+<p>Did you guess the right number?? <span th:text="${guess}"></span>!</p>
+
+<script src=""></script>
+</body>
+</html>
