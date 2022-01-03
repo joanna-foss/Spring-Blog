@@ -5,9 +5,10 @@
     <title>Home</title>
 </head>
 <body>
+<div th:replace="partials/header.html :: site-header"></div>
+<h1>Hello, <span th:text="${username}">user</span>!</h1>
+<p>This is your profile page. Welcome!</p>
 
-    <h1>Hello, <span th:text="${username}">user</span>!</h1>
-    <p>This is your profile page. Welcome!</p>
-
+<div th:replace="partials/footer.html :: site-footer"></div>
 </body>
 </html>

@@ -5,6 +5,8 @@
 	<title>Rollin'</title>
 </head>
 <body>
+<div th:replace="partials/header.html :: site-header"></div>
+
 <h1>Die Roll</h1>
 
 <p>Choose a number between 1 and 6. Then do a die roll to see if your number matches the die roll!</p>
@@ -26,6 +28,8 @@
 <h3>You chose number <span th:text="${n}"></span>.</h3>
 <h3>You rolled a <span th:text="${random}"></span>.</h3>
 <p>Did you guess the right number?? <span th:text="${guess}"></span>!</p>
+
+<div th:replace="partials/footer.html :: site-footer"></div>
 
 <script src=""></script>
 </body>

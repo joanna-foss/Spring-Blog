@@ -18,6 +18,7 @@ public class RollController {
     public String roll(@RequestParam(name = "n")@PathVariable String n, Model model) {
         int random = (int) Math.floor(Math.random() * 6) + 1;
         boolean guess = false;
+        model.addAttribute("title", "Roll");
         model.addAttribute("n", n);
         model.addAttribute("random", random);
         if(n.equals(Integer.toString(random))) {
