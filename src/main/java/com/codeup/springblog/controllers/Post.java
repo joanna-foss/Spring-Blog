@@ -5,8 +5,6 @@ public class Post {
     private int id;
     private String body;
 
-    public Post(){};
-
     public Post(String title, int id, String body){
         this.title = title;
         this.id = id;
