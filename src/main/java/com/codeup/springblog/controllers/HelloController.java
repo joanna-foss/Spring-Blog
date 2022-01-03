@@ -6,23 +6,16 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
+    @GetMapping("/hello/")
+    public String sayHello() {
+        return "hello";
+    }
+
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
-
-//    @GetMapping("/hello")
-//    @ResponseBody
-//    public String hello(){
-//        return "Happy Holidays!";
-//    }
-
-//    @GetMapping("/hello/{name}")
-//    @ResponseBody
-//    public String hello(@PathVariable String name) {
-//        return "Happy Holidays, " + name + "!";
-//    }
 
     @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
     @ResponseBody
