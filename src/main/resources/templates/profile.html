@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Home</title>
-</head>
+<div th:replace="partials/head.html :: site-head"></div>
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
 <h1>Hello, <span th:text="${username}">user</span>!</h1>

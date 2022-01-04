@@ -1,0 +1,32 @@
+body {
+    color: #333;
+    font-family: monospace, serif;
+    font-size: medium;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    color: #888;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline;
+}
+
+header h1 {
+    text-align: center;
+}
+
+#buttons-container form {
+    display: inline;
+}
