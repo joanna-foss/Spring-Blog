@@ -23,18 +23,42 @@ public class PostController {
     }
 
     @RequestMapping(path = "/posts/{id}")
-    public String post(@PathVariable Long id, Model model){
+    public String post(@PathVariable long id, Model model){
         model.addAttribute("title", "Individual Post");
         model.addAttribute("post", postDao.findById(id));
         Optional<Post> postAsOpt = postDao.findById(id);
         Post post = postAsOpt.get();
-        System.out.println("post1.getTitle() = " + post.getTitle());
         model.addAttribute("postTitle", post.getTitle());
         model.addAttribute("postBody", post.getBody());
+        model.addAttribute("postID", post.getId());
         return "posts/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    @GetMapping(path = "/posts/edit/{id}")
+    public String getEdit(@PathVariable long id, Model model){
+        model.addAttribute("title", "Edit Post");
+        Optional<Post> postAsOpt = postDao.findById(id);
+        Post post = postAsOpt.get();
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @PostMapping(path = "/posts/edit/{id}")
+    public String postEdit(@PathVariable long id, @RequestParam String title, @RequestParam String body){
+        Post post = postDao.getById(id);
+        post.setTitle(title);
+        post.setBody(body);
+        postDao.save(post);
+        return "posts/index";
+    }
+
+    @GetMapping(path="/posts/delete/{id}")
+    public String postDelete(@PathVariable long id){
+        postDao.deleteById(id);
+        return "posts/index";
+    }
+
+    @GetMapping(path = "/posts/create")
     @ResponseBody
     public String getCreate(){
         return "This will pull the create a post page.";
