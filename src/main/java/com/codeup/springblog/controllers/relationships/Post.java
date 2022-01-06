@@ -1,8 +1,9 @@
-package com.codeup.springblog.controllers;
+package com.codeup.springblog.controllers.relationships;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,13 +15,8 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String body;
 
-    public Post(String title, String body){
-        this.title = title;
-        this.body = body;
-    }
-
-    public Post() {}
-
+    @ManyToOne
+    private User user;
 
     public String getTitle() {
         return title;
@@ -44,5 +40,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

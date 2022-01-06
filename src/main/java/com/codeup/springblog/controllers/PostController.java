@@ -1,10 +1,9 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.controllers.relationships.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @Controller
@@ -22,12 +21,12 @@ public class PostController {
         return "posts/index";
     }
 
-    @RequestMapping(path = "/posts/{id}")
+    @GetMapping(path = "/posts/{id}")
     public String post(@PathVariable long id, Model model){
         model.addAttribute("title", "Individual Post");
         model.addAttribute("post", postDao.findById(id));
-        Optional<Post> postAsOpt = postDao.findById(id);
-        Post post = postAsOpt.get();
+
+        Post post = postDao.getById(id);
         model.addAttribute("postTitle", post.getTitle());
         model.addAttribute("postBody", post.getBody());
         model.addAttribute("postID", post.getId());
@@ -37,8 +36,7 @@ public class PostController {
     @GetMapping(path = "/posts/edit/{id}")
     public String getEdit(@PathVariable long id, Model model){
         model.addAttribute("title", "Edit Post");
-        Optional<Post> postAsOpt = postDao.findById(id);
-        Post post = postAsOpt.get();
+        Post post = postDao.getById(id);
         model.addAttribute("post", post);
         return "posts/edit";
     }
@@ -49,13 +47,13 @@ public class PostController {
         post.setTitle(title);
         post.setBody(body);
         postDao.save(post);
-        return "posts/index";
+        return "redirect:/posts";
     }
 
     @GetMapping(path="/posts/delete/{id}")
     public String postDelete(@PathVariable long id){
         postDao.deleteById(id);
-        return "posts/index";
+        return "redirect:/posts";
     }
 
     @GetMapping(path = "/posts/create")
@@ -64,7 +62,7 @@ public class PostController {
         return "This will pull the create a post page.";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    @PostMapping(path = "/posts/create")
     @ResponseBody
     public String postCreate(){
         return "This will post the create a post page.";
