@@ -4,13 +4,13 @@
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
 
-
 	<form th:action="'/posts/edit/' + ${post.getId()}" method="post">
+	
 		<label>Post Title:</label>
-		<input name="title" type="text" th:placeholder="${post.getTitle()}" th:value="${post.getTitle()}">
+		<input name="title" type="text" th:value="${post.getTitle()}">
 		
 		<label>Post Body:</label>
-		<input name="body" type="text" th:placeholder="${post.getBody()}" th:value="${post.getBody()}">
+		<input name="body" type="text" th:value="${post.getBody()}">
 		
 		<button type="submit">Submit</button>
 	</form>
