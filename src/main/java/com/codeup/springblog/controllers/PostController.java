@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.controllers.relationships.Post;
+import com.codeup.springblog.controllers.relationships.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +28,12 @@ public class PostController {
     public String post(@PathVariable long id, Model model){
         model.addAttribute("title", "Individual Post");
         model.addAttribute("post", postDao.findById(id));
-
         Post post = postDao.getById(id);
+        User user = userDao.getById(post.getUser().getId());
         model.addAttribute("postTitle", post.getTitle());
         model.addAttribute("postBody", post.getBody());
         model.addAttribute("postID", post.getId());
+        model.addAttribute("userEmail", user.getEmail());
         return "posts/show";
     }
 
