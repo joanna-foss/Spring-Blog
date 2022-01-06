@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao){
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -64,7 +66,8 @@ public class PostController {
 
     @PostMapping(path = "/posts/create")
     @ResponseBody
-    public String postCreate(){
+    public String postCreate(Model model){
+        model.addAttribute("userId", userDao.getById((long) 1));
         return "This will post the create a post page.";
     }
 }
