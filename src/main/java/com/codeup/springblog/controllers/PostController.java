@@ -25,7 +25,7 @@ public class PostController {
     }
 
     @GetMapping(path = "/posts/{id}")
-    public String post(@PathVariable long id, Model model){
+    public String viewPost(@PathVariable long id, Model model){
         model.addAttribute("title", "Individual Post");
         model.addAttribute("post", postDao.findById(id));
         Post post = postDao.getById(id);
@@ -61,15 +61,15 @@ public class PostController {
     }
 
     @GetMapping(path = "/posts/create")
-    @ResponseBody
-    public String getCreate(){
-        return "This will pull the create a post page.";
+    public String getCreate(Model model){
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping(path = "/posts/create")
-    @ResponseBody
-    public String postCreate(Model model){
-        model.addAttribute("userId", userDao.getById((long) 1));
-        return "This will post the create a post page.";
+    public String postCreate(@ModelAttribute Post post){
+        post.setUser(userDao.getById((long) 1));
+        postDao.save(post);
+        return "redirect:/posts";
     }
 }

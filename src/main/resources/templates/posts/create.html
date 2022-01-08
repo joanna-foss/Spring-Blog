@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="partials/head.html :: site-head"></div>
+
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
 
-<h3 th:text="${postTitle}"></h3>
-<p th:text="${postBody}"></p>
-<p>User email: <span th:text="${userEmail}"></span></p>
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+
+    <label for="postTitle">Title:</label>
+    <input type="text" th:field="*{title}" id="postTitle">
+
+    <label for="postBody">Body:</label>
+    <input type="text" th:field="*{body}" id="postBody">
+	
+    <button type="submit">Submit Post</button>
+</form>
 
 <div th:replace="partials/footer.html :: site-footer"></div>
 <div th:replace="partials/scripts.html :: site-scripts"></div>
 </body>
+
 </html>
