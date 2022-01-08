@@ -4,16 +4,18 @@
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
 
-	<form th:action="'/posts/edit/' + ${post.getId()}" method="post">
-	
-		<label>Post Title:</label>
+<div id="form-container">
+	<form th:action="'/posts/edit/' + ${post.getId()}" method="post" class="d-flex flex-column">
+		
+		<label class="mt-1 mb-3">Post Title:</label>
 		<input name="title" type="text" th:value="${post.getTitle()}">
 		
-		<label>Post Body:</label>
-		<input name="body" type="text" th:value="${post.getBody()}">
+		<label class="mt-1 mb-3">Post Body:</label>
+		<textarea name="body" th:value="${post.getBody()}" style="height: 10em;"></textarea>
 		
-		<button type="submit">Submit</button>
+		<button type="submit" class="btn btn-primary mt-3">Submit</button>
 	</form>
+</div>
 
 <div th:replace="partials/footer.html :: site-footer"></div>
 <div th:replace="partials/scripts.html :: site-scripts"></div>

@@ -4,17 +4,18 @@
 
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
-
-<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-
-    <label for="postTitle">Title:</label>
+<h1 class="text-center">Create New Post</h1>
+<div id="create-container">
+<form class="d-flex flex-column" th:action="@{/posts/create}" th:method="post" th:object="${post}">
+    <label for="postTitle" class="mt-1 mb-3">Title:</label>
     <input type="text" th:field="*{title}" id="postTitle">
 
-    <label for="postBody">Body:</label>
-    <input type="text" th:field="*{body}" id="postBody">
+    <label for="postBody" class="mt-1 mb-3">Body:</label>
+	<textarea th:field="*{body}" id="postBody" style="height: 10em;"></textarea>
 	
-    <button type="submit">Submit Post</button>
+    <button type="submit" class="btn btn-primary mt-1 mb-3">Submit Post</button>
 </form>
+</div>
 
 <div th:replace="partials/footer.html :: site-footer"></div>
 <div th:replace="partials/scripts.html :: site-scripts"></div>

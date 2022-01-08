@@ -3,21 +3,25 @@
 <div th:replace="partials/head.html :: site-head"></div>
 <body>
 <div th:replace="partials/header.html :: site-header"></div>
-<div id="posts-container">
+<div id="posts-container" class="d-flex flex-column align-items-center">
 	<div th:each="post : ${posts}">
-		<h2 th:text="${post.getTitle()}"></h2>
-		<div id="buttons-container">
+		<h2 class="mt-3 mb-3" th:text="${post.getTitle()}"></h2>
+		<img src="https://www.placecage.com/200/300" alt="this is the image associated with this blog post" class="mt-1 mb-1">
+		<div id="buttons-container" class="d-flex justify-content-between">
 			<form name="view" th:action="${'/posts/' + post.getId()}" method="get">
-				<button type="submit">View</button>
+				<button type="submit" class="btn btn-sm btn-primary">View</button>
 			</form>
 			<form name="edit" th:action="${'/posts/edit/' + post.getId()}" method="get">
-				<button type="submit">Edit</button>
+				<button type="submit" class="btn btn-sm btn-warning">Edit</button>
 			</form>
 			<form name="delete" th:action="${'/posts/delete/' + post.getId()}" method="get">
-				<button type="submit">Delete</button>
+				<button type="submit" class="btn btn-sm btn-danger">Delete</button>
 			</form>
 		</div>
 	</div>
+	<form name="create" action="/posts/create" method="get">
+		<button type="submit" class="btn btn-lg btn-info m-5">Create New Post</button>
+	</form>
 </div>
 
 <div th:replace="partials/footer.html :: site-footer"></div>
