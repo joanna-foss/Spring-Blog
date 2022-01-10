@@ -11,7 +11,7 @@
 		<input name="title" type="text" th:value="${post.getTitle()}">
 		
 		<label class="mt-1 mb-3">Post Body:</label>
-		<textarea name="body" th:value="${post.getBody()}" style="height: 10em;"></textarea>
+		<textarea name="body" style="height: 10em;">[[${post.getBody()}]]</textarea>
 		
 		<button type="submit" class="btn btn-primary mt-3">Submit</button>
 	</form>

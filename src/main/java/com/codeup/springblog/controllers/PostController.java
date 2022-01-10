@@ -33,7 +33,7 @@ public class PostController {
         model.addAttribute("postTitle", post.getTitle());
         model.addAttribute("postBody", post.getBody());
         model.addAttribute("postID", post.getId());
-        model.addAttribute("userEmail", user.getEmail());
+        model.addAttribute("user", user);
         return "posts/show";
     }
 

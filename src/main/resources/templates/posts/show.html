@@ -5,8 +5,8 @@
 <div th:replace="partials/header.html :: site-header"></div>
 
 <h3 th:text="${postTitle}"></h3>
+<p class="fs-6 text-muted">Written by: <span th:text="${user.getUsername()}" class="fst-italic"></span></p>
 <p th:text="${postBody}"></p>
-<p>User email: <span th:text="${userEmail}"></span></p>
 
 <div th:replace="partials/footer.html :: site-footer"></div>
 <div th:replace="partials/scripts.html :: site-scripts"></div>
