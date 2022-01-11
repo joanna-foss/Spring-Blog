@@ -4,5 +4,10 @@
 		<li><a href="/hello">hello</a></li>
 		<li><a href="/posts">posts</a></li>
 		<li><a href="/roll-dice">roll</a></li>
+		<li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn">Logout</button>
+            </form>
+        </li>
 	</ul>
 </nav>
